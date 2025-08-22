@@ -7,17 +7,23 @@
 
   <style>
     /* Estilo básico da página */
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    button { margin: 5px; padding: 8px 12px; } /* Espaçamento e tamanho dos botões */
+    body { font-family: Arial, sans-serif; margin: 20px; padding: 30px; text-align: center; }
+    button { margin: 5px; padding: 8px 12px; border-radius: 10px}
     #output { 
-      margin-top: 20px; 
+      margin-top: 30px; 
       white-space: pre; /* Mantém quebras de linha no texto mostrado */
       background: #f5f5f5; 
-      padding: 10px; 
+      padding: 18px; 
       border: 1px solid #ddd; 
     }
     form { margin-top: 15px; }
-    input { margin: 5px; padding: 5px; } /* Campos de texto mais organizados */
+    input { margin: 6px; padding: 8px; border-radius: 5px;}
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 4px #ccc;
+    }
   </style>
 </head>
 <body>
@@ -26,22 +32,22 @@
   <!-- Área de botões para o menu principal -->
   <div id="buttons">
     <!-- Cada botão tem um atributo "data-action" para indicar a ação que será executada -->
-    <button data-action="init">0 - Iniciar Farmácia</button> <!-- NOVO -->
-    <button data-action="list">1 - Listar medicamentos</button>
-    <button data-action="add">2 - Adicionar novo medicamento</button>
-    <button data-action="update">3 - Atualizar medicamento</button>
-    <button data-action="delete">4 - Remover medicamento</button>
-    <button data-action="clear">5 - Limpar farmácia</button>
-    <button data-action="search">6 - Buscar medicamento</button>
-    <button data-action="filterByTarja">7 - Filtrar medicamentos por tarja</button>
-    <button data-action="exit">8 - Sair</button>
+    <button data-action="init">Iniciar Farmácia</button> <!-- NOVO -->
+    <button data-action="list">Listar medicamentos</button>
+    <button data-action="add">Adicionar novo medicamento</button>
+    <button data-action="update">Atualizar medicamento</button>
+    <button data-action="delete">Remover medicamento</button>
+    <button data-action="clear">Limpar farmácia</button>
+    <button data-action="search">Buscar medicamento</button>
+    <button data-action="filterByTarja">Filtrar medicamentos por tarja</button>
+    <button data-action="exit">Sair</button>
   </div>
 
 
-  <!-- Aqui será exibido dinamicamente o formulário de cada ação (por exemplo, adicionar livro) -->
+  <!-- Aqui será exibido dinamicamente o formulário de cada ação-->
   <div id="forms"></div>
 
-  <!-- Área para mostrar resultados (exemplo: lista de livros cadastrados) -->
+  <!-- Área para mostrar resultados -->
   <div id="output"></div>
 
   <!-- Biblioteca externa Chart.js (para gráficos, se forem usados) -->

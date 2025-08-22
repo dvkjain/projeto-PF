@@ -47,7 +47,6 @@ const resetMedicines = () => {
   { id: 25, name: "Oxicodona", tarja: "Preta", forma: "Cápsula", publico: "Adultos" }
 ];
   saveMedicines(medicines)
-  console.log("Medicamentos iniciais salvos.")
   return medicines
   }
   

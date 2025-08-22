@@ -165,7 +165,7 @@ function renderPaginatedList(medParaMostrar) {
 const actions = {
   init: () => {
     medicamentos = Medicamentos.resetMedicines();
-    output.textContent = "📚 Medicamentos iniciados com lista de medicamentos padrão!";
+    output.textContent = "Medicamentos iniciados com lista de medicamentos padrão!";
     forms.innerHTML = "";
   },
   list: () => { currentPage = 1; renderPaginatedList(medicamentos); },
