@@ -113,7 +113,8 @@ function showGroupByTarjaForm() {
     const tarja = document.getElementById('tarjaName').value;
     const filtered = Medicamentos.filterMedicinesFromTarja(medicamentos, tarja);
     forms.innerHTML = '';
-    output.textContent = filtered.length === 0 ? 'Nenhum medicamento encontrado.' : Medicamentos.listMedicines(filtered);
+    currentPage = 1
+    renderPaginatedList(filtered);
   });
 }
 
@@ -136,13 +137,38 @@ function showSearchForm() {
 
 // ===== Actions =====
 // Dicionário que associa cada ação a uma função
+// ===== Paginação funcional usando chunkMedicines =====
+let currentPage = 1;
+const itemsPerPage = 5;
+
+function renderPaginatedList(medParaMostrar) {
+  forms.innerHTML = '';
+  const paginas = Medicamentos.chunkMedicines(medParaMostrar, itemsPerPage);
+  const totalPages = paginas.length;
+  const paginaAtual = paginas[currentPage - 1] || [];
+  output.innerHTML =
+    (paginaAtual.length === 0 ? 'Nenhum medicamento encontrado.' : Medicamentos.listMedicines(paginaAtual)) +
+    `<br>
+    <button id="firstPage" ${currentPage === 1 ? 'disabled' : ''}>Primeira</button>
+    <button id="prevPage" ${currentPage === 1 ? 'disabled' : ''}>Anterior</button>
+    Página ${currentPage} de ${totalPages}
+    <button id="nextPage" ${currentPage === totalPages ? 'disabled' : ''}>Próxima</button>
+    <button id="lastPage" ${currentPage === totalPages ? 'disabled' : ''}>Última</button>
+    `;
+
+  // Eventos dos botões
+  document.getElementById('firstPage').onclick = () => { currentPage = 1; renderPaginatedList(medParaMostrar); };
+  document.getElementById('prevPage').onclick = () => { if(currentPage > 1) { currentPage--; renderPaginatedList(medParaMostrar); } };
+  document.getElementById('nextPage').onclick = () => { if(currentPage < totalPages) { currentPage++; renderPaginatedList(medParaMostrar); } };
+  document.getElementById('lastPage').onclick = () => { currentPage = totalPages; renderPaginatedList(medParaMostrar); };
+}
 const actions = {
   init: () => {
     medicamentos = Medicamentos.resetMedicines();
     output.textContent = "📚 Medicamentos iniciados com lista de medicamentos padrão!";
     forms.innerHTML = "";
   },
-  list: () => { forms.innerHTML = ''; output.textContent = Medicamentos.listMedicines(medicamentos); },
+  list: () => { currentPage = 1; renderPaginatedList(medicamentos); },
   add: () => showAddForm(),
   update: () => showUpdateForm(),
   delete: () => showDeleteForm(),

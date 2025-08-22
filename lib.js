@@ -160,6 +160,21 @@ const ordenarCrescente = ([x, ...xs]) => {
   const fullFormat = medicine =>
     `${medicine.id} - "${medicine.title}" (${medicine.author}, ${medicine.year})`
 
+
+    const take = ([x, ...xs], n) => (n <= 0 || x === undefined) ? [] : [x, ...take(xs, n - 1)]
+
+  // drop: remove os primeiros n elementos e retorna o restante
+  const drop = ([x, ...xs], n) =>
+  n <= 0 || x === undefined ? [x, ...xs].filter(v => v !== undefined) // evita [undefined]
+  : drop(xs, n - 1) 
+  
+    const chunkMedicines = ([x, ...xs], n) => {
+    if (x === undefined) return []
+    const first = take([x, ...xs], n)
+    const rest = drop([x, ...xs], n)
+    return [first, ...chunkMedicines(rest, n)]
+  }
+
   // ========================
   // Transformações adicionais
   // ========================
@@ -194,7 +209,7 @@ export const Medicamentos = {
   addMedicine, updateMedicine, deleteMedicine,
 
   // Exibição
-  listMedicines, filterMedicinesFromTarja, shortFormat, fullFormat, searchMedicine,
+  listMedicines, filterMedicinesFromTarja, shortFormat, fullFormat, searchMedicine, chunkMedicines,
 
   // Transformações
   addCategoryByAuthor, updateTitles, renameFields
