@@ -144,7 +144,7 @@ const itemsPerPage = 5;
 function renderPaginatedList(medParaMostrar) {
   forms.innerHTML = '';
   const paginas = Medicamentos.chunkMedicines(medParaMostrar, itemsPerPage);
-  const totalPages = paginas.length;
+  const totalPages = paginas.length > 1 ? paginas.length : 1;
   const paginaAtual = paginas[currentPage - 1] || [];
   output.innerHTML =
     (paginaAtual.length === 0 ? 'Nenhum medicamento encontrado.' : Medicamentos.listMedicines(paginaAtual)) +
