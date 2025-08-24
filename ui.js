@@ -1,10 +1,10 @@
-// Importa a classe/módulo principal que contém as funções de manipulação da livraria
+// Importa a classe/módulo principal que contém as funções de manipulação dos dados
 import { Medicamentos } from './lib.js';
 
 // ===== Dados e elementos =====
 
-// Carrega os livros salvos no localStorage.
-// Se não houver nada salvo, reinicia com os livros padrão (resetBooks).
+// Carrega os medicamentos salvos no localStorage.
+// Se não houver nada salvo, reinicia com os medicamentos padrão (resetMedicines).
 let medicamentos = Medicamentos.loadMedicines()
 
 // Garante que o estado atual seja salvo no localStorage
@@ -17,12 +17,12 @@ const buttons = document.getElementById('buttons'); // Div que contém os botõe
 
 // ===== Forms =====
 // Cada função abaixo cria dinamicamente um formulário e adiciona
-// eventos de "submit" para executar a ação correspondente na livraria.
+// eventos de "submit" para executar a ação correspondente no CRUD.
 
-// --- Formulário de adicionar livro ---
+// --- Formulário de adicionar medicamento ---
 function showAddForm() {
   forms.innerHTML = `
-    <h3>Adicionar Livro</h3>
+    <h3>Adicionar Medicamento</h3>
     <form id="addForm">
       <input type="number" id="addId" placeholder="ID" required />
       <input type="text" id="addName" placeholder="Nome" required />
@@ -49,10 +49,10 @@ function showAddForm() {
   });
 }
 
-// --- Formulário de atualizar livro ---
+// --- Formulário de atualizar Medicamento ---
 function showUpdateForm() {
   forms.innerHTML = `
-    <h3>Atualizar Livro</h3>
+    <h3>Atualizar Medicamento</h3>
     <form id="updateForm">
       <input type="number" id="updateId" placeholder="ID" required />
       <input type="text" id="updateName" placeholder="Nome" required />
@@ -66,22 +66,19 @@ function showUpdateForm() {
     e.preventDefault();
     const id = Number(document.getElementById('updateId').value);
     const updates = {};
-    const name = document.getElementById('updateName').value;
-    const tarja = document.getElementById('updateTarja').value;
-    const forma = document.getElementById('updateForma').value;
-    const publico = document.getElementById('updatePublico').value;
-  if(name) updates.name = name;
-  if(tarja) updates.tarja = tarja;
-  if(forma) updates.forma = forma;
-  if(publico) updates.publico = publico;
-  medicamentos = Medicamentos.updateMedicine(medicamentos, id, updates); // Atualiza dados
-  Medicamentos.saveMedicines(medicamentos);
-  forms.innerHTML = '';
-  output.textContent = 'Medicamento atualizado!';
+    if(document.getElementById('updateName').value) updates.name = document.getElementById('updateName').value;
+    if(document.getElementById('updateTarja').value) updates.tarja = document.getElementById('updateTarja').value;
+    if(document.getElementById('updateForma').value) updates.forma = document.getElementById('updateForma').value;
+    if(document.getElementById('updatePublico').value) updates.publico = document.getElementById('updatePublico').value;
+   
+    medicamentos = Medicamentos.updateMedicine(medicamentos, id, updates); // Atualiza o medicamento
+    Medicamentos.saveMedicines(medicamentos);
+    forms.innerHTML = '';
+    output.textContent = 'Medicamento atualizado!';
   });
 }
 
-// --- Formulário de remover livro ---
+// --- Formulário de remover Medicamento ---
 function showDeleteForm() {
   forms.innerHTML = `
     <h3>Remover Medicamento</h3>
@@ -93,13 +90,14 @@ function showDeleteForm() {
   document.getElementById('deleteForm').addEventListener('submit', e => {
     e.preventDefault();
     const id = Number(document.getElementById('deleteId').value);
-    medicamentos = Medicamentos.deleteMedicine(medicamentos, id); // Remove
+    medicamentos = Medicamentos.deleteMedicine(medicamentos, id); // Remove o medicamento
     Medicamentos.saveMedicines(medicamentos);
     forms.innerHTML = '';
     output.textContent = 'Medicamento removido!';
   });
 }
 
+// --- Formulário de listar por tarja ---
 function showGroupByTarjaForm() {
   forms.innerHTML = `
     <h3>Listar Medicamentos por Tarja</h3>
@@ -118,6 +116,7 @@ function showGroupByTarjaForm() {
   });
 }
 
+// --- Formulário de buscar Medicamento ---
 function showSearchForm() {
   forms.innerHTML = `
     <h3>Buscar Medicamento</h3>
@@ -135,9 +134,9 @@ function showSearchForm() {
   });
 }
 
-// ===== Actions =====
+// ======= Actions =======
 // Dicionário que associa cada ação a uma função
-// ===== Paginação funcional usando chunkMedicines =====
+// Paginação funcional usando chunkMedicines
 let currentPage = 1;
 const itemsPerPage = 5;
 
@@ -162,17 +161,18 @@ function renderPaginatedList(medParaMostrar) {
   document.getElementById('nextPage').onclick = () => { if(currentPage < totalPages) { currentPage++; renderPaginatedList(medParaMostrar); } };
   document.getElementById('lastPage').onclick = () => { currentPage = totalPages; renderPaginatedList(medParaMostrar); };
 }
+
 const actions = {
   init: () => {
     medicamentos = Medicamentos.resetMedicines();
-    output.textContent = "Medicamentos iniciados com lista de medicamentos padrão!";
+    output.textContent = "Medicamentos iniciados com lista padrão!";
     forms.innerHTML = "";
   },
   list: () => { currentPage = 1; renderPaginatedList(medicamentos); },
   add: () => showAddForm(),
   update: () => showUpdateForm(),
   delete: () => showDeleteForm(),
-  clear: () => { forms.innerHTML = ''; Medicamentos.clearMedicines(); medicamentos=[]; output.textContent='Medicamentos esvaziados.'; },
+  clear: () => { forms.innerHTML = ''; Medicamentos.clearMedicines(); medicamentos=[]; output.textContent='Medicamentos esvaziados!'; },
   search: () => showSearchForm(),
   filterByTarja: () => showGroupByTarjaForm(),
   exit: () => { forms.innerHTML = ''; output.textContent='Bye, bye! :)'; }
