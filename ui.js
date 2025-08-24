@@ -42,10 +42,17 @@ function showAddForm() {
       forma: document.getElementById('addForma').value,
       publico: document.getElementById('addPublico').value,
     };
+    if (Medicamentos.idInList(medicamentos, newMedicine.id)) {
+      forms.innerHTML = ''; // Limpa o formulário
+      output.textContent = 'Erro: ID já existe. Use outro ID.';
+    }
+
+    else {
     medicamentos = Medicamentos.addMedicine(medicamentos, newMedicine); // Chama a função da lib
     Medicamentos.saveMedicines(medicamentos); // Salva no localStorage
     forms.innerHTML = ''; // Limpa o formulário
     output.textContent = 'Medicamento adicionado!';
+    }
   });
 }
 
@@ -74,10 +81,16 @@ function showUpdateForm() {
   if(tarja) updates.tarja = tarja;
   if(forma) updates.forma = forma;
   if(publico) updates.publico = publico;
-  medicamentos = Medicamentos.updateMedicine(medicamentos, id, updates); // Atualiza dados
-  Medicamentos.saveMedicines(medicamentos);
-  forms.innerHTML = '';
-  output.textContent = 'Medicamento atualizado!';
+  if (!Medicamentos.idInList(medicamentos, id)) {
+    forms.innerHTML = ''; // Limpa o formulário
+    output.textContent = 'Erro: ID não encontrado. Use um ID existente.';
+  }
+  else {
+    medicamentos = Medicamentos.updateMedicine(medicamentos, id, updates); // Atualiza dados
+    Medicamentos.saveMedicines(medicamentos);
+    forms.innerHTML = '';
+    output.textContent = 'Medicamento atualizado!';
+  }
   });
 }
 
@@ -93,10 +106,16 @@ function showDeleteForm() {
   document.getElementById('deleteForm').addEventListener('submit', e => {
     e.preventDefault();
     const id = Number(document.getElementById('deleteId').value);
+    if (!Medicamentos.idInList(medicamentos, id)) {
+      forms.innerHTML = ''; // Limpa o formulário
+      output.textContent = 'Erro: ID não encontrado. Use um ID existente.';
+    }
+    else {
     medicamentos = Medicamentos.deleteMedicine(medicamentos, id); // Remove
     Medicamentos.saveMedicines(medicamentos);
     forms.innerHTML = '';
     output.textContent = 'Medicamento removido!';
+    }
   });
 }
 

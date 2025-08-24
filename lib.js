@@ -199,6 +199,8 @@ const ordenarCrescente = ([x, ...xs]) => {
   const renameFields = (medicines, renamerFn) =>
     medicines.map(medicine => renamerFn(medicine))
 
+  const idInList = (medicines, id) => medicines.filter((medicine) => medicine.id === id).length > 0
+
 
 export const Medicamentos = {
   // Persistência
@@ -208,7 +210,7 @@ export const Medicamentos = {
   addMedicine, updateMedicine, deleteMedicine,
 
   // Exibição
-  listMedicines, filterMedicinesFromTarja, shortFormat, fullFormat, searchMedicine, chunkMedicines,
+  listMedicines, filterMedicinesFromTarja, shortFormat, fullFormat, searchMedicine, chunkMedicines, idInList,
 
   // Transformações
   addCategoryByAuthor, updateTitles, renameFields
