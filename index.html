@@ -6,7 +6,7 @@
   <title>Medicamentos</title> <!-- Título que aparece na aba do navegador -->
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; padding: 30px; text-align: center; }
-    button { margin: 5px; padding: 8px 12px; border-radius: 10px }
+    button { margin: 5px; padding: 8px 12px; border-radius: 10px; background-color: green; color: white; }
     #output { 
       margin-top: 30px; 
       white-space: pre-wrap; /* Mantém quebras de linha no texto mostrado */
@@ -15,6 +15,11 @@
       border: 1px solid #ddd;
       text-align: left;
     }
+    button:disabled {
+      background-color: rgb(71, 134, 110);
+      cursor: not-allowed;
+      opacity: 0.6;
+}
     form { margin-top: 15px; }
     input { margin: 6px; padding: 8px; border-radius: 5px;}
     h1 {
@@ -22,6 +27,7 @@
       margin-bottom: 20px;
       letter-spacing: 1px;
       text-shadow: 1px 1px 4px #ccc;
+      margin-bottom: 100px;
     }
   </style>
 </head>
