@@ -167,12 +167,13 @@ function renderPaginatedList(medParaMostrar) {
   const paginaAtual = paginas[currentPage - 1] || [];
   output.innerHTML =
     (paginaAtual.length === 0 ? 'Nenhum medicamento encontrado.' : Medicamentos.listMedicines(paginaAtual)) +
-    `<br>
+    `<div class="pagination">
     <button id="firstPage" ${currentPage === 1 ? 'disabled' : ''}>Primeira</button>
     <button id="prevPage" ${currentPage === 1 ? 'disabled' : ''}>Anterior</button>
-    Página ${currentPage} de ${totalPages}
+    <p id="page-info">Página ${currentPage} de ${totalPages}</p>
     <button id="nextPage" ${currentPage === totalPages ? 'disabled' : ''}>Próxima</button>
     <button id="lastPage" ${currentPage === totalPages ? 'disabled' : ''}>Última</button>
+    </div>
     `;
 
   // Eventos dos botões

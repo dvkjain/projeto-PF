@@ -98,6 +98,21 @@ input:focus {
     line-height: 1.5;
 }
 
+.pagination {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center; /* centraliza tudo */
+  align-items: center;
+  gap: 10px; /* espaço entre os elementos */
+}
+
+#page-info {
+  margin-right: 15px;
+  margin-left: 15px;
+  font-weight: 600;
+  color: #B22222; /* vermelho para destaque */
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
