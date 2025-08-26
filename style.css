@@ -99,7 +99,7 @@ input:focus {
 }
 
 .pagination {
-  margin-top: 50px;
+  margin-top: -20px;
   display: flex;
   justify-content: center; /* centraliza tudo */
   align-items: center;
@@ -111,6 +111,32 @@ input:focus {
   margin-left: 15px;
   font-weight: 600;
   color: #B22222; /* vermelho para destaque */
+}
+
+.med-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: -30px;
+  font-size: 0.95em;
+}
+
+.med-table th, .med-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.med-table th {
+  background-color: #B22222;
+  color: #fff;
+}
+
+.med-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.hidden {
+  display: none !important;
 }
 
 @keyframes fadeIn {

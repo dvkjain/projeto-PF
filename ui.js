@@ -43,14 +43,12 @@ function showAddForm() {
       publico: document.getElementById('addPublico').value,
     };
     if (Medicamentos.idInList(medicamentos, newMedicine.id)) {
-      forms.innerHTML = ''; // Limpa o formulário
+      forms.classList.add("hidden"); // Esconde o formulário
       output.textContent = 'Erro: ID já existe. Use outro ID.';
-    }
-
-    else {
+    } else {
     medicamentos = Medicamentos.addMedicine(medicamentos, newMedicine); // Chama a função da lib
     Medicamentos.saveMedicines(medicamentos); // Salva no localStorage
-    forms.innerHTML = ''; // Limpa o formulário
+    forms.classList.add("hidden"); // Esconde o formulário
     output.textContent = 'Medicamento adicionado!';
     }
   });
@@ -80,13 +78,12 @@ function showUpdateForm() {
     if(document.getElementById('updatePublico').value) updates.publico = document.getElementById('updatePublico').value;
    
     if (!Medicamentos.idInList(medicamentos, id)) {
-      forms.innerHTML = ''; // Limpa o formulário
+      forms.classList.add("hidden"); // Esconde o formulário
       output.textContent = 'Erro: ID não encontrado. Use um ID existente.';
-    }
-    else {
+    } else {
       medicamentos = Medicamentos.updateMedicine(medicamentos, id, updates); // Atualiza dados
       Medicamentos.saveMedicines(medicamentos);
-      forms.innerHTML = '';
+      forms.classList.add("hidden"); // Esconde o formulário
       output.textContent = 'Medicamento atualizado!';
     }
   });
@@ -105,13 +102,12 @@ function showDeleteForm() {
     e.preventDefault();
     const id = Number(document.getElementById('deleteId').value);
     if (!Medicamentos.idInList(medicamentos, id)) {
-      forms.innerHTML = ''; // Limpa o formulário
+      forms.classList.add("hidden"); // Esconde o formulário
       output.textContent = 'Erro: ID não encontrado. Use um ID existente.';
-    }
-    else {
+    } else {
     medicamentos = Medicamentos.deleteMedicine(medicamentos, id); // Remove o medicamento
     Medicamentos.saveMedicines(medicamentos);
-    forms.innerHTML = '';
+    forms.classList.add("hidden"); // Esconde o formulário
     output.textContent = 'Medicamento removido!';
     }
   });
@@ -130,7 +126,7 @@ function showGroupByTarjaForm() {
     e.preventDefault();
     const tarja = document.getElementById('tarjaName').value;
     const filtered = Medicamentos.filterMedicinesFromTarja(medicamentos, tarja);
-    forms.innerHTML = '';
+    forms.classList.add("hidden"); // Esconde o formulário
     currentPage = 1
     renderPaginatedList(filtered);
   });
@@ -149,8 +145,10 @@ function showSearchForm() {
     e.preventDefault();
     const name = document.getElementById('searchName').value;
     const found = Medicamentos.searchMedicine(medicamentos, name);
-    forms.innerHTML = '';
-    output.textContent = found.length === 0 ? 'Nenhum medicamento encontrado.' : Medicamentos.listMedicines(found);
+    forms.classList.add("hidden"); // Esconde o formulário
+    if (found.length === 0) {
+      output.textContent = 'Nenhum medicamento encontrado.';
+    } else { currentPage = 1; renderPaginatedList(found); }
   });
 }
 
@@ -158,15 +156,43 @@ function showSearchForm() {
 // Dicionário que associa cada ação a uma função
 // Paginação funcional usando chunkMedicines
 let currentPage = 1;
-const itemsPerPage = 5;
+const itemsPerPage = 10;
+
+const renderTable = (medicines) =>
+  medicines.length === 0
+    ? "<p>Nenhum medicamento encontrado.</p>"
+    : `
+      <table class="med-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Tarja</th>
+            <th>Forma</th>
+            <th>Público</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${medicines.map(med => `
+            <tr>
+              <td>${med.id}</td>
+              <td>${med.name}</td>
+              <td>${med.tarja}</td>
+              <td>${med.forma}</td>
+              <td>${med.publico}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
 
 function renderPaginatedList(medParaMostrar) {
-  forms.innerHTML = '';
+  forms.classList.add("hidden"); // Esconde o formulário
   const paginas = Medicamentos.chunkMedicines(medParaMostrar, itemsPerPage);
   const totalPages = paginas.length > 1 ? paginas.length : 1;
   const paginaAtual = paginas[currentPage - 1] || [];
   output.innerHTML =
-    (paginaAtual.length === 0 ? 'Nenhum medicamento encontrado.' : Medicamentos.listMedicines(paginaAtual)) +
+    renderTable(paginaAtual) +
     `<div class="pagination">
     <button id="firstPage" ${currentPage === 1 ? 'disabled' : ''}>Primeira</button>
     <button id="prevPage" ${currentPage === 1 ? 'disabled' : ''}>Anterior</button>
@@ -184,19 +210,23 @@ function renderPaginatedList(medParaMostrar) {
 }
 
 const actions = {
-  init: () => {
+  init: () => { 
+    forms.classList.add("hidden");
     medicamentos = Medicamentos.resetMedicines();
     output.textContent = "Medicamentos iniciados com lista padrão!";
-    forms.innerHTML = "";
   },
-  list: () => { currentPage = 1; renderPaginatedList(medicamentos); },
-  add: () => showAddForm(),
-  update: () => showUpdateForm(),
-  delete: () => showDeleteForm(),
-  clear: () => { forms.innerHTML = ''; Medicamentos.clearMedicines(); medicamentos=[]; output.textContent='Medicamentos esvaziados!'; },
-  search: () => showSearchForm(),
-  filterByTarja: () => showGroupByTarjaForm(),
-  exit: () => { forms.innerHTML = ''; output.textContent='Bye, bye! :)'; }
+  list: () => { forms.classList.add("hidden"); currentPage = 1; renderPaginatedList(medicamentos); },
+  add: () => { forms.classList.remove("hidden"); showAddForm() },
+  update: () => { forms.classList.remove("hidden"); showUpdateForm() },
+  delete: () => { forms.classList.remove("hidden"); showDeleteForm() },
+  clear: () => { 
+    forms.classList.add("hidden"); 
+    Medicamentos.clearMedicines(); 
+    medicamentos=[]; 
+    output.textContent='Medicamentos esvaziados!'; },
+  search: () => { forms.classList.remove("hidden"); showSearchForm() },
+  filterByTarja: () => { forms.classList.remove("hidden"); showGroupByTarjaForm() },
+  exit: () => { forms.classList.add("hidden"); output.textContent='Bye, bye! :)'; }
 };
 
 // ===== Event listener =====

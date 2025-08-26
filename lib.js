@@ -23,27 +23,52 @@ const resetMedicines = () => {
     { id: 2, name: "Ibuprofeno", tarja: "Vermelha", forma: "Comprimido", publico: "Todas as idades" },
     { id: 3, name: "Cetirizina", tarja: "Vermelha", forma: "Cápsula", publico: "Todas as idades" },
     { id: 4, name: "Omeprazol", tarja: "Vermelha", forma: "Cápsula", publico: "Adultos" },
-    { id: 5, name: "Amoxicilina", tarja: "Amarela", forma: "Cápsula", publico: "Todas as idades" },
-    { id: 6, name: "Metformina", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
-    { id: 7, name: "Captopril", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
-    { id: 8, name: "Losartana", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
-    { id: 9, name: "Ranitidina", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
-    { id: 10, name: "Azitromicina", tarja: "Amarela", forma: "Cápsula", publico: "Todas as idades" },
-    { id: 11, name: "Lorazepam", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
-    { id: 12, name: "Diazepam", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
-    { id: 13, name: "Clonazepam", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
-    { id: 14, name: "Risperidona", tarja: "Preta", forma: "Cápsula", publico: "Adultos" },
-    { id: 15, name: "Metadona", tarja: "Preta", forma: "Cápsula", publico: "Adultos" },
-    { id: 16, name: "Furosemida", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
-    { id: 17, name: "Salbutamol", tarja: "Amarela", forma: "Spray", publico: "Todas as idades" },
-    { id: 18, name: "Prednisona", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
-    { id: 19, name: "Ácido Acetilsalicílico", tarja: "Vermelha", forma: "Comprimido", publico: "Adultos" },
-    { id: 20, name: "Dipirona", tarja: "Vermelha", forma: "Cápsula", publico: "Todas as idades" },
-    { id: 21, name: "Loratadina", tarja: "Vermelha", forma: "Comprimido", publico: "Todas as idades" },
-    { id: 22, name: "Claritromicina", tarja: "Amarela", forma: "Cápsula", publico: "Todas as idades" },
-    { id: 23, name: "Naproxeno", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
-    { id: 24, name: "Midazolam", tarja: "Preta", forma: "Cápsula", publico: "Adultos" },
-    { id: 25, name: "Oxicodona", tarja: "Preta", forma: "Cápsula", publico: "Adultos" }
+    { id: 5, name: "Ácido Acetilsalicílico", tarja: "Vermelha", forma: "Comprimido", publico: "Adultos" },
+    { id: 6, name: "Dipirona", tarja: "Vermelha", forma: "Cápsula", publico: "Todas as idades" },
+    { id: 7, name: "Loratadina", tarja: "Vermelha", forma: "Comprimido", publico: "Todas as idades" },
+    { id: 8, name: "Pantoprazol", tarja: "Vermelha", forma: "Comprimido", publico: "Adultos" },
+    { id: 9, name: "Atorvastatina", tarja: "Vermelha", forma: "Comprimido", publico: "Adultos" },
+    { id: 10, name: "Rosuvastatina", tarja: "Vermelha", forma: "Comprimido", publico: "Adultos" },
+    { id: 11, name: "Amoxicilina", tarja: "Amarela", forma: "Cápsula", publico: "Todas as idades" },
+    { id: 12, name: "Metformina", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
+    { id: 13, name: "Captopril", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
+    { id: 14, name: "Losartana", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
+    { id: 15, name: "Ranitidina", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
+    { id: 16, name: "Azitromicina", tarja: "Amarela", forma: "Cápsula", publico: "Todas as idades" },
+    { id: 17, name: "Furosemida", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
+    { id: 18, name: "Salbutamol", tarja: "Amarela", forma: "Spray", publico: "Todas as idades" },
+    { id: 19, name: "Prednisona", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
+    { id: 20, name: "Claritromicina", tarja: "Amarela", forma: "Cápsula", publico: "Todas as idades" },
+    { id: 21, name: "Naproxeno", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
+    { id: 22, name: "Hidroclorotiazida", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
+    { id: 23, name: "Levotiroxina", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
+    { id: 24, name: "Glibenclamida", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
+    { id: 25, name: "Doxiciclina", tarja: "Amarela", forma: "Cápsula", publico: "Adultos" },
+    { id: 26, name: "Clortalidona", tarja: "Amarela", forma: "Comprimido", publico: "Adultos" },
+    { id: 27, name: "Lorazepam", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
+    { id: 28, name: "Diazepam", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
+    { id: 29, name: "Clonazepam", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
+    { id: 30, name: "Risperidona", tarja: "Preta", forma: "Cápsula", publico: "Adultos" },
+    { id: 31, name: "Metadona", tarja: "Preta", forma: "Cápsula", publico: "Adultos" },
+    { id: 32, name: "Midazolam", tarja: "Preta", forma: "Cápsula", publico: "Adultos" },
+    { id: 33, name: "Oxicodona", tarja: "Preta", forma: "Cápsula", publico: "Adultos" },
+    { id: 34, name: "Morfina", tarja: "Preta", forma: "Injetável", publico: "Adultos" },
+    { id: 35, name: "Fentanil", tarja: "Preta", forma: "Injetável", publico: "Adultos" },
+    { id: 36, name: "Haloperidol", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
+    { id: 37, name: "Olanzapina", tarja: "Preta", forma: "Comprimido", publico: "Adultos" },
+    { id: 38, name: "Vitamina C", tarja: "Sem tarja", forma: "Comprimido", publico: "Todas as idades" },
+    { id: 39, name: "Complexo B", tarja: "Sem tarja", forma: "Comprimido", publico: "Todas as idades" },
+    { id: 40, name: "Ômega 3", tarja: "Sem tarja", forma: "Cápsula", publico: "Todas as idades" },
+    { id: 41, name: "Colágeno", tarja: "Sem tarja", forma: "Cápsula", publico: "Adultos" },
+    { id: 42, name: "Creatina", tarja: "Sem tarja", forma: "Pó", publico: "Adultos" },
+    { id: 43, name: "Cafeína", tarja: "Sem tarja", forma: "Cápsula", publico: "Adultos" },
+    { id: 44, name: "Vitamina D", tarja: "Sem tarja", forma: "Comprimido", publico: "Todas as idades" },
+    { id: 45, name: "Magnésio", tarja: "Sem tarja", forma: "Comprimido", publico: "Todas as idades" },
+    { id: 46, name: "Amoxicilina Pediátrica", tarja: "Amarela", forma: "Suspensão oral", publico: "Crianças" },
+    { id: 47, name: "Ibuprofeno Pediátrico", tarja: "Vermelha", forma: "Suspensão oral", publico: "Crianças" },
+    { id: 48, name: "Paracetamol Pediátrico", tarja: "Vermelha", forma: "Suspensão oral", publico: "Crianças" },
+    { id: 49, name: "Dipirona Gotas", tarja: "Vermelha", forma: "Solução oral", publico: "Crianças" },
+    { id: 50, name: "Loratadina Pediátrica", tarja: "Vermelha", forma: "Xarope", publico: "Crianças" }
   ];
   saveMedicines(medicines)
   return medicines
@@ -64,11 +89,6 @@ const deleteMedicine = (medicines, id) =>
 // ========================
 // Listagem e formatação
 // ========================
-
-const listMedicines = medicines =>
-  medicines.map(medicine =>
-    `${medicine.id} - "${medicine.name}" (${medicine.tarja}, ${medicine.forma}, ${medicine.publico})`
-  ).join('\n')
 
 const filterMedicinesFromTarja = (medicines, tarja) =>
   medicines.filter(medicine => medicine.tarja === tarja)
@@ -93,7 +113,7 @@ const chunkMedicines = ([x, ...xs], n) => {
     return [first, ...chunkMedicines(rest, n)]
   }
 
-  const idInList = (medicines, id) => medicines.filter((medicine) => medicine.id === id).length > 0
+const idInList = (medicines, id) => medicines.filter((medicine) => medicine.id === id).length > 0
 
 export const Medicamentos = {
   // Persistência
@@ -103,6 +123,5 @@ export const Medicamentos = {
   addMedicine, updateMedicine, deleteMedicine,
 
   // Exibição
-
-  listMedicines, filterMedicinesFromTarja, searchMedicine, chunkMedicines, idInList,
+  filterMedicinesFromTarja, searchMedicine, chunkMedicines, idInList
 }
