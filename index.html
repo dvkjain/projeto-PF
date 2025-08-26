@@ -4,48 +4,29 @@
   <meta charset="UTF-8" /> <!-- Define que os caracteres usados são UTF-8 (permite acentos e emojis) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta o layout para dispositivos móveis -->
   <title>Medicamentos</title> <!-- Título que aparece na aba do navegador -->
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; padding: 30px; text-align: center; }
-    button { margin: 5px; padding: 8px 12px; border-radius: 10px; background-color: green; color: white; }
-    #output { 
-      margin-top: 30px; 
-      white-space: pre-wrap; /* Mantém quebras de linha no texto mostrado */
-      background: #f5f5f5; 
-      padding: 18px; 
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-    button:disabled {
-      background-color: rgb(71, 134, 110);
-      cursor: not-allowed;
-      opacity: 0.6;
-}
-    form { margin-top: 15px; }
-    input { margin: 6px; padding: 8px; border-radius: 5px;}
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 4px #ccc;
-      margin-bottom: 100px;
-    }
-  </style>
+
+  <!-- Fonte Montserrat -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Estilos externos -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Sistema de Medicamentos</h1> <!-- Título principal na tela -->
+  <h1><i class="fa-solid fa-prescription-bottle-medical"></i> Sistema de Medicamentos</h1> <!-- Título principal na tela -->
 
   <!-- Área de botões para o menu principal -->
   <div id="buttons">
     <!-- Cada botão tem um atributo "data-action" para indicar a ação que será executada -->
-    <button data-action="init">Iniciar Farmácia</button> 
-    <button data-action="list">Listar medicamentos</button>
-    <button data-action="add">Adicionar medicamento</button>
-    <button data-action="update">Atualizar medicamento</button>
-    <button data-action="delete">Remover medicamento</button>
-    <button data-action="clear">Limpar farmácia</button>
-    <button data-action="search">Buscar medicamento</button>
-    <button data-action="filterByTarja">Filtrar por tarja</button>
-    <button data-action="exit">Sair</button>
+    <button data-action="init"><i class="fa-solid fa-play"></i> Iniciar</button>
+    <button data-action="list"><i class="fa-solid fa-list"></i> Listar</button>
+    <button data-action="add"><i class="fa-solid fa-plus"></i> Adicionar</button>
+    <button data-action="update"><i class="fa-solid fa-pen"></i> Atualizar</button>
+    <button data-action="delete"><i class="fa-solid fa-trash"></i> Remover</button>
+    <button data-action="clear"><i class="fa-solid fa-broom"></i> Limpar</button>
+    <button data-action="search"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+    <button data-action="filterByTarja"><i class="fa-solid fa-filter"></i> Filtrar</button>
+    <button data-action="exit"><i class="fa-solid fa-door-open"></i> Sair</button>
   </div>
 
   <!-- Aqui será exibido dinamicamente o formulário de cada ação-->
