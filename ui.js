@@ -44,12 +44,13 @@ function showAddForm() {
     };
     if (Medicamentos.idInList(medicamentos, newMedicine.id)) {
       forms.classList.add("hidden"); // Esconde o formulário
-      output.textContent = 'Erro: ID já existe. Use outro ID.';
+      output.innerHTML = 'Erro: ID já existe. Use outro ID.';
     } else {
     medicamentos = Medicamentos.addMedicine(medicamentos, newMedicine); // Chama a função da lib
     Medicamentos.saveMedicines(medicamentos); // Salva no localStorage
     forms.classList.add("hidden"); // Esconde o formulário
-    output.textContent = 'Medicamento adicionado!';
+    output.classList.remove("hidden")
+    output.innerHTML = 'Medicamento adicionado!';
     }
   });
 }
@@ -76,15 +77,17 @@ function showUpdateForm() {
     if(document.getElementById('updateTarja').value) updates.tarja = document.getElementById('updateTarja').value;
     if(document.getElementById('updateForma').value) updates.forma = document.getElementById('updateForma').value;
     if(document.getElementById('updatePublico').value) updates.publico = document.getElementById('updatePublico').value;
-   
+    
+    output.classList.remove("hidden")
+
     if (!Medicamentos.idInList(medicamentos, id)) {
       forms.classList.add("hidden"); // Esconde o formulário
-      output.textContent = 'Erro: ID não encontrado. Use um ID existente.';
+      output.innerHTML = 'Erro: ID não encontrado. Use um ID existente.';
     } else {
       medicamentos = Medicamentos.updateMedicine(medicamentos, id, updates); // Atualiza dados
       Medicamentos.saveMedicines(medicamentos);
       forms.classList.add("hidden"); // Esconde o formulário
-      output.textContent = 'Medicamento atualizado!';
+      output.innerHTML = 'Medicamento atualizado!';
     }
   });
 }
@@ -101,14 +104,17 @@ function showDeleteForm() {
   document.getElementById('deleteForm').addEventListener('submit', e => {
     e.preventDefault();
     const id = Number(document.getElementById('deleteId').value);
+
+    output.classList.remove("hidden")
+
     if (!Medicamentos.idInList(medicamentos, id)) {
       forms.classList.add("hidden"); // Esconde o formulário
-      output.textContent = 'Erro: ID não encontrado. Use um ID existente.';
+      output.innerHTML = 'Erro: ID não encontrado. Use um ID existente.';
     } else {
     medicamentos = Medicamentos.deleteMedicine(medicamentos, id); // Remove o medicamento
     Medicamentos.saveMedicines(medicamentos);
     forms.classList.add("hidden"); // Esconde o formulário
-    output.textContent = 'Medicamento removido!';
+    output.innerHTML = 'Medicamento removido!';
     }
   });
 }
@@ -146,8 +152,11 @@ function showSearchForm() {
     const name = document.getElementById('searchName').value;
     const found = Medicamentos.searchMedicine(medicamentos, name);
     forms.classList.add("hidden"); // Esconde o formulário
+
+    output.classList.remove("hidden")
+
     if (found.length === 0) {
-      output.textContent = 'Nenhum medicamento encontrado.';
+      output.innerHTML = 'Nenhum medicamento encontrado.';
     } else { currentPage = 1; renderPaginatedList(found); }
   });
 }
