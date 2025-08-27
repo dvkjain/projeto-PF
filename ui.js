@@ -209,24 +209,45 @@ function renderPaginatedList(medParaMostrar) {
   document.getElementById('lastPage').onclick = () => { currentPage = totalPages; renderPaginatedList(medParaMostrar); };
 }
 
+const disabledbuttons = () => {
+  document.getElementById('list').disabled = true;
+  document.getElementById('add').disabled = true;
+  document.getElementById('update').disabled = true;
+  document.getElementById('delete').disabled = true;
+  document.getElementById('clear').disabled = true;
+  document.getElementById('search').disabled = true;
+  document.getElementById('filterByTarja').disabled = true;
+}
+
+const enablebuttons = () => {
+  document.getElementById('list').disabled = false;
+  document.getElementById('add').disabled = false;
+  document.getElementById('update').disabled = false;
+  document.getElementById('delete').disabled = false;
+  document.getElementById('clear').disabled = false;
+  document.getElementById('search').disabled = false;
+  document.getElementById('filterByTarja').disabled = false;
+}
+
 const actions = {
   init: () => { 
     forms.classList.add("hidden");
     medicamentos = Medicamentos.resetMedicines();
-    output.textContent = "Medicamentos iniciados com lista padrão!";
+    output.innerHTML = "Medicamentos iniciados com lista padrão!";
+    enablebuttons();
   },
-  list: () => { forms.classList.add("hidden"); currentPage = 1; renderPaginatedList(medicamentos); },
-  add: () => { forms.classList.remove("hidden"); showAddForm() },
-  update: () => { forms.classList.remove("hidden"); showUpdateForm() },
-  delete: () => { forms.classList.remove("hidden"); showDeleteForm() },
+  list: () => { output.classList.remove("hidden"); forms.classList.add("hidden"); currentPage = 1; renderPaginatedList(medicamentos); },
+  add: () => { output.classList.add("hidden"); forms.classList.remove("hidden"); showAddForm() },
+  update: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos); forms.classList.remove("hidden"); showUpdateForm() },
+  delete: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos); forms.classList.remove("hidden"); showDeleteForm() },
   clear: () => { 
     forms.classList.add("hidden"); 
     Medicamentos.clearMedicines(); 
     medicamentos=[]; 
-    output.textContent='Medicamentos esvaziados!'; },
-  search: () => { forms.classList.remove("hidden"); showSearchForm() },
-  filterByTarja: () => { forms.classList.remove("hidden"); showGroupByTarjaForm() },
-  exit: () => { forms.classList.add("hidden"); output.textContent='Bye, bye! :)'; }
+    output.innerHTML='Medicamentos esvaziados!'; },
+  search: () => { output.classList.add("hidden"); forms.classList.remove("hidden"); showSearchForm() },
+  filterByTarja: () => { output.classList.add("hidden"); forms.classList.remove("hidden"); showGroupByTarjaForm() },
+  exit: () => { output.classList.remove("hidden"); forms.classList.add("hidden"); disabledbuttons(); output.innerHTML='Bye, bye! :)'; }
 };
 
 // ===== Event listener =====

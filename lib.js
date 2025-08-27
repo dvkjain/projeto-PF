@@ -91,8 +91,8 @@ const deleteMedicine = (medicines, id) =>
 // ========================
 
 const filterMedicinesFromTarja = (medicines, tarja) =>
-  medicines.filter(medicine => medicine.tarja === tarja)
-  
+  medicines.filter(medicine => containsWord(medicine.tarja, tarja))
+
 const containsWord = (texto, palavra) => texto.toLowerCase().includes(palavra.toLowerCase())
     
 const searchMedicine = (medicines, palavra) => 

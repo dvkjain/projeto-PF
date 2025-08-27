@@ -135,6 +135,12 @@ input:focus {
   background-color: #f9f9f9;
 }
 
+button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .hidden {
   display: none !important;
 }
