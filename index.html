@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" /> <!-- Define que os caracteres usados são UTF-8 (permite acentos e emojis) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta o layout para dispositivos móveis -->
-  <title>Medicamentos</title> <!-- Título que aparece na aba do navegador -->
+  <title>Pague Mais</title> <!-- Título que aparece na aba do navegador -->
+
+  <link rel="icon" type="image/x-icon" href="images/IconeFundoVermelho.ico"> <!-- Ícone que aparece na aba do navegador -->
 
   <!-- Fonte Montserrat -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
@@ -13,20 +15,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1><i class="fa-solid fa-prescription-bottle-medical"></i> Sistema de Medicamentos</h1> <!-- Título principal na tela -->
+  <h1><i class="fa-solid fa-prescription-bottle-medical"></i>Pague Mais</h1><!-- Título principal na tela -->
 
   <!-- Área de botões para o menu principal -->
   <div id="buttons">
     <!-- Cada botão tem um atributo "data-action" para indicar a ação que será executada -->
-    <button id="init" data-action="init"><i class="fa-solid fa-play"></i> Iniciar</button>
-    <button id="list" data-action="list"><i class="fa-solid fa-list"></i> Listar</button>
-    <button id="add" data-action="add"><i class="fa-solid fa-plus"></i> Adicionar</button>
-    <button id="update" data-action="update"><i class="fa-solid fa-pen"></i> Atualizar</button>
-    <button id="delete" data-action="delete"><i class="fa-solid fa-trash"></i> Remover</button>
-    <button id="clear" data-action="clear"><i class="fa-solid fa-broom"></i> Limpar</button>
-    <button id="search" data-action="search"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
-    <button id="filterByTarja" data-action="filterByTarja"><i class="fa-solid fa-filter"></i> Filtrar</button>
-    <button id="exit" data-action="exit"><i class="fa-solid fa-door-open"></i> Sair</button>
+    <button id="init" data-action="init" title="Gerar a tabela inicial"><i class="fa-solid fa-play"></i> Iniciar</button>
+    <button id="list" data-action="list" title="Exibir a tabela atual"><i class="fa-solid fa-list"></i> Listar</button>
+    <button id="add" data-action="add" title="Adicionar um medicamento à tabela"><i class="fa-solid fa-plus"></i> Adicionar</button>
+    <button id="update" data-action="update" title="Atualizar um medicamento da tabela"><i class="fa-solid fa-pen"></i> Atualizar</button>
+    <button id="delete" data-action="delete" title="Remover um medicamento da tabela"><i class="fa-solid fa-trash"></i> Remover</button>
+    <button id="clear" data-action="clear" title="Limpar a tabela"><i class="fa-solid fa-broom"></i> Limpar</button>
+    <button id="search" data-action="search" title="Pesquisar por um medicamento"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+    <button id="filterByTarja" data-action="filterByTarja" title="Filtrar medicamentos por tarja"><i class="fa-solid fa-filter"></i> Filtrar</button>
+    <button id="exit" data-action="exit" title="Sair do sistema"><i class="fa-solid fa-door-open"></i> Sair</button>
   </div>
 
   <!-- Aqui será exibido dinamicamente o formulário de cada ação-->
