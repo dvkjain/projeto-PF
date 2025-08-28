@@ -153,8 +153,6 @@ function showSearchForm() {
     const found = Medicamentos.searchMedicine(medicamentos, name);
     forms.classList.add("hidden"); // Esconde o formulário
 
-    output.classList.remove("hidden")
-
     if (found.length === 0) {
       output.innerHTML = 'Nenhum medicamento encontrado.';
     } else { currentPage = 1; renderPaginatedList(found); }
@@ -200,6 +198,7 @@ function renderPaginatedList(medParaMostrar) {
   const paginas = Medicamentos.chunkMedicines(medParaMostrar, itemsPerPage);
   const totalPages = paginas.length > 1 ? paginas.length : 1;
   const paginaAtual = paginas[currentPage - 1] || [];
+  output.classList.remove("hidden")
   output.innerHTML =
     renderTable(paginaAtual) +
     `<div class="pagination">
@@ -245,7 +244,7 @@ const actions = {
     output.innerHTML = "Medicamentos iniciados com lista padrão!";
     enablebuttons();
   },
-  list: () => { output.classList.remove("hidden"); forms.classList.add("hidden"); currentPage = 1; renderPaginatedList(medicamentos); },
+  list: () => { forms.classList.add("hidden"); currentPage = 1; renderPaginatedList(medicamentos); },
   add: () => { output.classList.add("hidden"); forms.classList.remove("hidden"); showAddForm() },
   update: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos); forms.classList.remove("hidden"); showUpdateForm() },
   delete: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos); forms.classList.remove("hidden"); showDeleteForm() },
