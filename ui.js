@@ -43,6 +43,7 @@ function showAddForm() {
       publico: document.getElementById('addPublico').value,
     };
     if (Medicamentos.idInList(medicamentos, newMedicine.id)) {
+      output.classList.remove("hidden")
       forms.classList.add("hidden"); // Esconde o formulário
       output.innerHTML = 'Erro: ID já existe. Use outro ID.';
     } else {
