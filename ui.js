@@ -154,6 +154,7 @@ function showSearchForm() {
     forms.classList.add("hidden"); // Esconde o formulário
 
     if (found.length === 0) {
+      output.classList.remove("hidden")
       output.innerHTML = 'Nenhum medicamento encontrado.';
     } else { currentPage = 1; renderPaginatedList(found); }
   });
