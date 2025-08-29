@@ -195,8 +195,10 @@ const renderTable = (medicines) =>
       </table>
     `;
 
-function renderPaginatedList(medParaMostrar) {
-  forms.classList.add("hidden"); // Esconde o formulário
+function renderPaginatedList(medParaMostrar, hideForm = true) {
+  if (hideForm) {
+    forms.classList.add("hidden"); // Esconde o formulário
+  }
   const paginas = Medicamentos.chunkMedicines(medParaMostrar, itemsPerPage);
   const totalPages = paginas.length > 1 ? paginas.length : 1;
   const paginaAtual = paginas[currentPage - 1] || [];
@@ -213,10 +215,10 @@ function renderPaginatedList(medParaMostrar) {
     `;
 
   // Eventos dos botões
-  document.getElementById('firstPage').onclick = () => { currentPage = 1; renderPaginatedList(medParaMostrar); };
-  document.getElementById('prevPage').onclick = () => { if(currentPage > 1) { currentPage--; renderPaginatedList(medParaMostrar); } };
-  document.getElementById('nextPage').onclick = () => { if(currentPage < totalPages) { currentPage++; renderPaginatedList(medParaMostrar); } };
-  document.getElementById('lastPage').onclick = () => { currentPage = totalPages; renderPaginatedList(medParaMostrar); };
+  document.getElementById('firstPage').onclick = () => { currentPage = 1; renderPaginatedList(medParaMostrar, hideForm); };
+  document.getElementById('prevPage').onclick = () => { if(currentPage > 1) { currentPage--; renderPaginatedList(medParaMostrar, hideForm); } };
+  document.getElementById('nextPage').onclick = () => { if(currentPage < totalPages) { currentPage++; renderPaginatedList(medParaMostrar, hideForm); } };
+  document.getElementById('lastPage').onclick = () => { currentPage = totalPages; renderPaginatedList(medParaMostrar, hideForm); };
 }
 
 const disabledbuttons = () => {
@@ -246,10 +248,10 @@ const actions = {
     output.innerHTML = "Medicamentos iniciados com lista padrão!";
     enablebuttons();
   },
-  list: () => { forms.classList.add("hidden"); currentPage = 1; renderPaginatedList(medicamentos); },
+  list: () => { currentPage = 1; renderPaginatedList(medicamentos, true); },
   add: () => { output.classList.add("hidden"); forms.classList.remove("hidden"); showAddForm() },
-  update: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos); forms.classList.remove("hidden"); showUpdateForm() },
-  delete: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos); forms.classList.remove("hidden"); showDeleteForm() },
+  update: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos, false); forms.classList.remove("hidden"); showUpdateForm() },
+  delete: () => { output.classList.remove("hidden"); currentPage = 1; renderPaginatedList(medicamentos, false); forms.classList.remove("hidden"); showDeleteForm() },
   clear: () => { 
     forms.classList.add("hidden"); 
     Medicamentos.clearMedicines(); 
