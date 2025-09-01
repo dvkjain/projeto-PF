@@ -221,7 +221,7 @@ function renderPaginatedList(medParaMostrar, hideForm = true) {
   document.getElementById('lastPage').onclick = () => { currentPage = totalPages; renderPaginatedList(medParaMostrar, hideForm); };
 }
 
-const disabledbuttons = () => {
+const disablebuttons = () => {
   document.getElementById('list').disabled = true;
   document.getElementById('add').disabled = true;
   document.getElementById('update').disabled = true;
@@ -259,7 +259,7 @@ const actions = {
     output.innerHTML='Medicamentos esvaziados!'; },
   search: () => { output.classList.add("hidden"); forms.classList.remove("hidden"); showSearchForm() },
   filterByTarja: () => { output.classList.add("hidden"); forms.classList.remove("hidden"); showGroupByTarjaForm() },
-  exit: () => { output.classList.remove("hidden"); forms.classList.add("hidden"); disabledbuttons(); output.innerHTML='Bye, bye! :)'; }
+  exit: () => { output.classList.remove("hidden"); forms.classList.add("hidden"); disablebuttons(); output.innerHTML='Bye, bye! :)'; }
 };
 
 // ===== Event listener =====
